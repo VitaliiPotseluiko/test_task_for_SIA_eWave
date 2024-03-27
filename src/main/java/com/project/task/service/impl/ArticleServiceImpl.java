@@ -54,10 +54,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public long getAllForSevenLastDays() {
-        return articleRepository.findAll().stream()
-                .filter(a -> a.getPublishingDate().isBefore(LocalDate.now())
-                        && a.getPublishingDate().isAfter(LocalDate.now().minusDays(AMOUNT_OF_DAYS + 1)))
-                .count();
+        return articleRepository.getArticleAmountForLastSevenDays(
+                LocalDate.now().minusDays(AMOUNT_OF_DAYS + 1), LocalDate.now()
+        );
     }
 
     @Override

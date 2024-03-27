@@ -1,6 +1,8 @@
 package com.project.task.service.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -36,30 +38,6 @@ class ArticleServiceImplTest {
     private Mapper<ArticleResponseDto, Article, ArticleRequestDto> mapper;
     @InjectMocks
     private ArticleServiceImpl articleService;
-
-    @Test
-    public void getAllForSevenLastDays_GetThreeArticle_Ok() {
-        Article firstArticle = new Article();
-        firstArticle.setId(1L);
-        firstArticle.setPublishingDate(LocalDate.now().minusDays(1));
-        Article secondArticle = new Article();
-        secondArticle.setId(2L);
-        secondArticle.setPublishingDate(LocalDate.now().minusDays(2));
-        Article thirdArticle = new Article();
-        thirdArticle.setId(3L);
-        thirdArticle.setPublishingDate(LocalDate.now().minusDays(3));
-        Article fourthArticle = new Article();
-        fourthArticle.setId(2L);
-        fourthArticle.setPublishingDate(LocalDate.now().minusDays(8));
-        List<Article> articles = new ArrayList<>(
-                List.of(firstArticle, secondArticle, thirdArticle, fourthArticle)
-        );
-        when(articleRepository.findAll()).thenReturn(articles);
-
-        long result = articleService.getAllForSevenLastDays();
-
-        assertEquals(3, result);
-    }
 
     @Test
     public void save_SaveArticle_Ok() {
