@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-admin
+      author: vitalii
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: email, value: "admin@gmail.com"}
+              - column: {name: password, value: "$2a$12$aY8LMB1asfITC6VjWcz4vOzUTz17jWH3sYU5S0mSv0NbfVwtwX4Ha"}
+              - column: {name: full_name, value: "Administrator"}
